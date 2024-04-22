@@ -1,0 +1,32 @@
+﻿<Window x:Class="Management_SYS.Planed_calls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_SYS"
+        mc:Ignorable="d"
+        Title="Planed_calls" Height="450" Width="800">
+    <Grid>
+        <Button HorizontalAlignment="Right" Click="ExitButton_Click" VerticalAlignment="Top" Margin="10" Content="Exit" />
+
+        <!-- Добавляем WrapPanel для размещения плиток карточек клиентов -->
+        <WrapPanel x:Name="MainWrapPanel" Margin="0, 45, 0, 10" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+            <!-- Здесь будут располагаться плитки -->
+            <ListView x:Name="ListOfCustomers" Margin="10" SelectionChanged="ListOfCustomers_SelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="NameOfCustomer" DisplayMemberBinding="{Binding NameOfCustomer}" />
+                        <GridViewColumn Header="PhoneNumberOfCustomer" DisplayMemberBinding="{Binding PhoneNumberOfCustomer}" />
+                        <GridViewColumn Header="LastContact" DisplayMemberBinding="{Binding LastContact}" />
+                        <GridViewColumn Header="NextContact" DisplayMemberBinding="{Binding NextContact}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </WrapPanel>
+    </Grid>
+</Window>

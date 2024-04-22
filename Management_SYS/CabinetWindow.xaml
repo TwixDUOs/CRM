@@ -1,0 +1,30 @@
+﻿<Window x:Class="Management_SYS.CabinetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_SYS"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Title="CRM System" Height="500" Width="800">
+    <Grid>
+
+        <!-- Область с содержимым -->
+        <Border  Background="LightGray" Margin="10">
+            <!-- Здесь будет отображаться информация по запланированным звонкам клиентам -->
+        </Border>
+
+        <!-- Блок слева с ссылками -->
+        <Border  Background="LightGray" Margin="10">
+            <StackPanel Margin="10">
+                <TextBlock Text="History" MouseDown="HistoryLink_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10" TextDecorations="Underline" Cursor="Hand"  Width="41"/>
+                <TextBlock Text="Waiting" MouseDown="PlannedCallsLink_Click" HorizontalAlignment="Left" VerticalAlignment="Top" TextDecorations="Underline" Cursor="Hand"  Width="46"/>
+                <TextBlock Text="Add new" MouseDown="AddNew_Click" HorizontalAlignment="Left" VerticalAlignment="Top" TextDecorations="Underline" Margin="0,10,0,10" Cursor="Hand"  Width="46"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Кнопка выхода из базы данных -->
+        <Button HorizontalAlignment="Right" Click="ExitButton_Click" VerticalAlignment="Top" Margin="10" Content="Exit" />
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="Management_SYS.AddClient_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_SYS"
+        mc:Ignorable="d"
+        Title="AddClient_Window" Height="450" Width="800">
+    <Grid>
+        <Button HorizontalAlignment="Right" Click="ExitButton_Click" VerticalAlignment="Top" Margin="10" Content="Exit" />
+
+        <TextBlock Text="Add Client" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="24"/>
+        <StackPanel Margin="20,60,20,0">
+            <TextBlock Text="Phone Number:" x:Name="textbox1"/>
+            <TextBox x:Name="PhoneNumberTextBox" />
+            <TextBlock Text="Client Name:" Margin="0,10,0,0"/>
+            <TextBox x:Name="ClientNameTextBox"/>
+            <Button Content="Add" Click="AddClientButton_Click" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

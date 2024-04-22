@@ -1,0 +1,29 @@
+﻿<Window x:Class="Management_SYS.AuthentificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Management_SYS"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Title="CRM System" Height="400" Width="700">
+    <Grid Background="#ffdadada">
+        <Border MinWidth="400" Margin="15" Background="#fff" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Autentification" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <Grid Margin="0 0 0 20">
+                    <Button HorizontalAlignment="Left" Content="Sign UP" Click="ButtonRegistrationClick"/>
+                    <Button HorizontalAlignment="Right" Content="Sign IN" Style="{StaticResource MaterialDesignFlatButton}"></Button>
+                </Grid>
+                <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Login" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="textBoxPassword" materialDesign:HintAssist.Hint="Password" Style= "{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="Log in" Margin="0 20" Click="Button_Authentification_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
