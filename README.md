@@ -1,4 +1,5 @@
-CRM System
+**CRM System**
+
 Welcome to the CRM System project by TwixDUOs!
 
 Introduction
