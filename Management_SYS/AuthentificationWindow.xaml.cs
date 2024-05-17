@@ -1,87 +1,97 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Management_SYS
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthentificationWindow.xaml
-    /// </summary>
     public partial class AuthentificationWindow : Window
     {
         public AuthentificationWindow()
         {
             InitializeComponent();
+            AttachEnterKeyHandlers();
         }
 
+        private void AttachEnterKeyHandlers()
+        {
+            textBoxLogin.KeyDown += TextBox_KeyDown;
+            textBoxPassword.KeyDown += TextBox_KeyDown;
+        }
 
-        private void Button_Authentification_Click(object sender, RoutedEventArgs e)
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Button_Authenticate_Click(this, new RoutedEventArgs());
+            }
+        }
+
+        private void Button_Authenticate_Click(object sender, RoutedEventArgs e)
         {
             string login = textBoxLogin.Text;
             string password = textBoxPassword.Password;
 
-            if (login.Length < 5)
+            if (!IsValidInput(login, textBoxLogin, "It is too short") ||
+                !IsValidInput(password, textBoxPassword, "It is too short"))
             {
-                textBoxLogin.ToolTip = "It is too short";
-                textBoxLogin.Background = Brushes.Red;
+                return;
             }
-            else if (password.Length < 5)
-            {
-                textBoxPassword.ToolTip = "It is too short";
-                textBoxPassword.Background = Brushes.Red;
-            }
-            else
-            {
-                textBoxLogin.ToolTip = "";
-                textBoxLogin.Background = Brushes.Transparent;
-                textBoxPassword.ToolTip = "";
-                textBoxPassword.Background = Brushes.Transparent;
 
-                bool isAnyUserRegistered = false;
-                using (ApplicationContext db = new ApplicationContext())
+            ResetInputFields();
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                if (!db.Users.Any())
                 {
-                    isAnyUserRegistered = db.Users.Any();
+                    MessageBox.Show("No users registered.");
+                    return;
                 }
 
-                if (isAnyUserRegistered)
-                {
-                    User Authentificarion = null;
-                    using (ApplicationContext db = new ApplicationContext())
-                    {
-                        Authentificarion = db.Users.Where(b => b.Login == login && b.Password == password).FirstOrDefault();
-                    }
+                User authenticatedUser = db.Users.FirstOrDefault(b => b.Login == login && b.Password == password);
 
-                    if (Authentificarion != null)
-                    {
-                        CabinetWindow cabinetWindow = new CabinetWindow();
-                        cabinetWindow.Show();
-                        Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Uncorrect login or password");
-                    }
+                if (authenticatedUser != null)
+                {
+                    OpenCabinetWindow();
                 }
                 else
                 {
-                    MessageBox.Show("No users registered.");
+                    MessageBox.Show("Incorrect login or password");
                 }
             }
         }
+
+        private bool IsValidInput(string input, Control control, string toolTip)
+        {
+            if (input.Length < 5)
+            {
+                control.ToolTip = toolTip;
+                control.Background = Brushes.Red;
+                return false;
+            }
+            return true;
+        }
+
+        private void ResetInputFields()
+        {
+            textBoxLogin.ToolTip = "";
+            textBoxLogin.Background = Brushes.Transparent;
+            textBoxPassword.ToolTip = "";
+            textBoxPassword.Background = Brushes.Transparent;
+        }
+
+        private void OpenCabinetWindow()
+        {
+            CabinetWindow cabinetWindow = new CabinetWindow();
+            cabinetWindow.Show();
+            Hide();
+        }
+
         private void ButtonRegistrationClick(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
             this.Close();
         }
     }

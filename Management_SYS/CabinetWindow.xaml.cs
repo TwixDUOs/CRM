@@ -53,8 +53,8 @@ namespace Management_SYS
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
             this.Close();
         }
         

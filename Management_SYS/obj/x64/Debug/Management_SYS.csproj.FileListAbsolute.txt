@@ -47,7 +47,6 @@ C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Authentificati
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\CabinetWindow.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\CardWindow.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\HistoryWindow.g.cs
-C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\MainWindow.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\PlannedCallsWindow.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\App.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS_MarkupCompile.cache
@@ -58,7 +57,6 @@ C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Authentificati
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\CabinetWindow.baml
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\CardWindow.baml
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\HistoryWindow.baml
-C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\MainWindow.baml
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\PlannedCallsWindow.baml
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.g.resources
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.Properties.Resources.resources
@@ -67,3 +65,5 @@ C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.csproj.CopyComplete
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.exe
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.pdb
+C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\RegistrationWindow.g.cs
+C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\RegistrationWindow.baml
