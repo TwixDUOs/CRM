@@ -21,7 +21,7 @@ namespace Management_SYS
 
         private void LoadContactHistory()
         {
-            // Получение истории контактов для выбранного клиента
+            // Getting the contact history for the selected customer
             var contactHistory = dbContext.Contacts_story
                 .Where(c => c.Id_of_customer == selectedCustomer.customerID)
                 .Select(contact => new
@@ -34,16 +34,16 @@ namespace Management_SYS
                 })
                 .ToList();
 
-            // Отображение истории контактов в ListView
+            // Displaying the contact history in ListView
             ContactHistoryListView.ItemsSource = contactHistory;
         }
 
         private void AddContactButton_Click(object sender, RoutedEventArgs e)
         {
-            // Получение информации о новом контакте из элементов управления
+            // Getting information about the new contact from the controls
             string contactInfo = ContactInfoTextBox.Text;
 
-            // Создание нового объекта контакта
+            // Creating a new contact object
             Contact_story newContact = new Contact_story()
             {
                 Id_of_customer = selectedCustomer.customerID,
@@ -51,30 +51,30 @@ namespace Management_SYS
                 Contact_info = contactInfo
             };
 
-            // Обновление времени последнего контакта в объекте Customer
+            // Updating the last contact time in the Customer object
             selectedCustomer.LastContact = DateTime.Now.ToString();
             DateTime? nextContactOitput = NextContactDatePicker.Value;
             selectedCustomer.NextContact = nextContactOitput.ToString();
 
-            // Добавление нового контакта в базу данных
+            // Adding the new contact to the database
             dbContext.Contacts_story.Add(newContact);
             dbContext.SaveChanges();
 
-            // Обновление времени последнего контакта в таблице Customers
-            // Находим объект Customer в контексте базы данных по его ID
+            // Updating the last contact time in the Customers table
+            // Finding the Customer object in the database context by its ID
             Customer customerToUpdate = dbContext.Customers.Find(selectedCustomer.customerID);
 
-            // Проверяем, найден ли объект Customer
+            // Checking if the Customer object is found
             if (customerToUpdate != null)
             {
-                // Обновляем значение last contact
+                // Updating the last contact value
                 customerToUpdate.LastContact = DateTime.Now.ToString();
 
-                // Сохраняем изменения в базе данных
+                // Saving changes to the database
                 dbContext.SaveChanges();
             }
 
-            // Обновление списка истории контактов
+            // Updating the contact history list
             LoadContactHistory();
 
             ContactInfoTextBox.Text = "";

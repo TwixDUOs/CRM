@@ -18,6 +18,7 @@ namespace Management_SYS
             LoadContactHistory();
         }
 
+        // Load contact history from the database
         private void LoadContactHistory()
         {
             try
@@ -42,10 +43,11 @@ namespace Management_SYS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при загрузке данных из базы данных: " + ex.Message);
+                MessageBox.Show("Error loading data from the database: " + ex.Message);
             }
         }
 
+        // Handle selection change in the contacts list
         private void ListOfCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ListOfContacts.SelectedItem != null)
@@ -59,6 +61,7 @@ namespace Management_SYS
             }
         }
 
+        // Class for joining contact and customer data
         public class ContactJoin
         {
             public int id_of_contact { get; set; }
@@ -69,6 +72,7 @@ namespace Management_SYS
             public int Id_of_customer { get; set; }
         }
 
+        // Handle exit button click
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             CabinetWindow cabinetWindow = new CabinetWindow();

@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Management_SYS
 {
-    /// <summary>
-    /// Логика взаимодействия для AddClient_Window.xaml
-    /// </summary>
     public partial class AddClient_Window : Window
     {
         ApplicationContext1 bd;
@@ -34,14 +31,6 @@ namespace Management_SYS
             cabinetWindow.Show();
             this.Close();
 
-        }
-        // отладочная функция
-        private void LoadData() {
-            List<Customer> customers = bd.Customers.ToList();
-            string str = "";
-            foreach (Customer customer in customers)
-                str += " " + customer.NameOfCustomer + " " + customer.PhoneNumberOfCustomer + " ";
-            textbox1.Text = str;
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)
@@ -88,8 +77,6 @@ namespace Management_SYS
             Customer customer = new Customer(name, phoneNumber, currentDateTimeString, currentDateTimeString);
             bd.Customers.Add(customer);
             bd.SaveChanges();
-
-            LoadData(); // Перезавантаження даних
         }
 
         private void ClearInputFields()

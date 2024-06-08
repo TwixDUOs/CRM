@@ -24,7 +24,7 @@
             <Border Background="White" Margin="10" Padding="10" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid>
                     <TextBlock Text="Welcome to your CRM system!" FontSize="20" FontWeight="Bold" Foreground="Gray" Margin="0,0,0,20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Select an action from the left menu to get started." FontSize="16" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                    <TextBlock x:Name="NavigationTextBlock" Text="Select an action from the left menu to get started." FontSize="16" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,50,0,0"/>
                 </Grid>
             </Border>
         </DockPanel>

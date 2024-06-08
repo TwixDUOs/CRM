@@ -5,28 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Management_SYS"
         mc:Ignorable="d"
-        Title="History window" Height="450" Width="800">
-    <Grid>
-        <Button HorizontalAlignment="Right" Click="ExitButton_Click" VerticalAlignment="Top" Margin="10" Content="Exit" />
+        Title="History Window" Height="450" Width="800"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <!-- Navigation panel with links -->
+        <StackPanel DockPanel.Dock="Left" Background="{DynamicResource PrimaryHueLightBrush}" Margin="10" VerticalAlignment="Stretch" Width="200">
+            <TextBlock Text="Contact History" FontSize="24" FontWeight="Bold" Foreground="White" Margin="10"/>
+            <TextBlock Text="Back to Cabinet" MouseDown="ExitButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,10" TextDecorations="Underline" Cursor="Hand" Width="150" Foreground="White"/>
+        </StackPanel>
 
-        <!-- Добавляем WrapPanel для размещения плиток карточек клиентов -->
-        <WrapPanel x:Name="MainWrapPanel" Margin="0, 45, 0, 10" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" >
-            <!-- Здесь будут располагаться плитки -->
-            <ListView x:Name="ListOfContacts" SelectionMode="Single" Margin="10" SelectionChanged="ListOfCustomers_SelectionChanged">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="NameOfCustomer" DisplayMemberBinding="{Binding NameOfCustomer}" />
-                        <GridViewColumn Header="PhoneNumberOfCustomer" DisplayMemberBinding="{Binding PhoneNumberOfCustomer}" />
-                        <GridViewColumn Header="Contact_info" DisplayMemberBinding="{Binding Contact_info}" />
-                        <GridViewColumn Header="Time_of_contact" DisplayMemberBinding="{Binding Time_of_contact}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </WrapPanel>
-    </Grid>
+        <!-- Main content -->
+        <Border Background="White" Margin="10" Padding="10" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Contact History" FontSize="20" FontWeight="Bold" Foreground="Gray" Margin="0,0,0,20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+                <DataGrid x:Name="ListOfContacts" AutoGenerateColumns="False" Grid.Row="1" Margin="0,10,0,0" SelectionMode="Single" SelectionChanged="ListOfCustomers_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Customer Name" Binding="{Binding NameOfCustomer}" Width="*"/>
+                        <DataGridTextColumn Header="Phone Number" Binding="{Binding PhoneNumberOfCustomer}" Width="*"/>
+                        <DataGridTextColumn Header="Contact Info" Binding="{Binding Contact_info}" Width="*"/>
+                        <DataGridTextColumn Header="Contact Time" Binding="{Binding Time_of_contact}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </DockPanel>
 </Window>
