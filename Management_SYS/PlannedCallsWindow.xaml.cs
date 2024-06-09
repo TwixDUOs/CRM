@@ -10,6 +10,7 @@ namespace Management_SYS
     {
         private ApplicationContext1 dbContext;
         private List<Customer> ListOfCustomers;
+        private bool isCardWindowOpen = false; // Flag to control window state
 
         public PlannedCallsWindow()
         {
@@ -23,23 +24,46 @@ namespace Management_SYS
         // Load planned calls for today
         private void LoadPlannedCalls()
         {
-            DateTime today = DateTime.Today;
-            var plannedCalls = dbContext.Customers
-                .ToList()
-                .Where(c => DateTime.TryParse(c.NextContact, out DateTime nextContactDate) && nextContactDate.Date == today)
-                .Select(c => new PlannedCallViewModel
-                {
-                    NameOfCustomer = c.NameOfCustomer,
-                    PhoneNumberOfCustomer = c.PhoneNumberOfCustomer,
-                    LastContact = Convert.ToDateTime(c.LastContact),
-                    NextContact = Convert.ToDateTime(c.NextContact),
-                    CustomerID = c.customerID,
-                    LastComment = GetLastComment(c.customerID)
-                })
-                .ToList();
+            try
+            {
+                DateTime today = DateTime.Today;
 
-            PlannedCallsDataGrid.ItemsSource = plannedCalls;
+                var plannedCalls = dbContext.Customers
+                    .ToList()
+                    .Where(c =>
+                    {
+                        DateTime nextContactDate;
+                        return DateTime.TryParse(c.NextContact, out nextContactDate);
+                    })
+                    .Where(c => DateTime.Parse(c.NextContact).Date == today)
+                    .Select(c => new PlannedCallViewModel
+                    {
+                        NameOfCustomer = c.NameOfCustomer,
+                        PhoneNumberOfCustomer = c.PhoneNumberOfCustomer,
+                        LastContact = c.LastContact,
+                        NextContact = c.NextContact, // Format date with dots
+                        CustomerID = c.customerID,
+                        LastComment = dbContext.Contacts_story
+                            .Where(contact => contact.Id_of_customer == c.customerID)
+                            .OrderByDescending(contact => contact.Time_of_contact)
+                            .Select(contact => contact.Contact_info)
+                            .FirstOrDefault()
+                    })
+                    .OrderBy(pc => pc.NameOfCustomer)
+                    .ToList();
+
+                PlannedCallsDataGrid.ItemsSource = plannedCalls;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading planned calls from the database: " + ex.Message);
+            }
         }
+
+
+
+
+
 
         // Load all customers
         private void LoadCustomers()
@@ -73,6 +97,8 @@ namespace Management_SYS
         // Handle selection change in the DataGrid
         private void PlannedCallsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (isCardWindowOpen) return; // Check if the window is already open
+
             var selectedPlannedCall = PlannedCallsDataGrid.SelectedItem as PlannedCallViewModel;
 
             if (selectedPlannedCall != null)
@@ -84,6 +110,12 @@ namespace Management_SYS
                 Customer selectedCustomer = dbContext.Customers.FirstOrDefault(c => c.customerID == customerId);
                 CardWindow cardWindow = new CardWindow(selectedCustomer, dbContext);
                 cardWindow.Owner = this; // Set the owner of the CardWindow
+                isCardWindowOpen = true; // Set the flag before opening the window
+                cardWindow.Closed += (s, args) => 
+                {
+                    isCardWindowOpen = false; // Reset the flag after closing the window
+                    PlannedCallsDataGrid.SelectedItem = null; // Reset the selection
+                }; 
                 cardWindow.ShowDialog(); // Show the window as a dialog
             }
         }
@@ -94,8 +126,8 @@ namespace Management_SYS
     {
         public string NameOfCustomer { get; set; }
         public string PhoneNumberOfCustomer { get; set; }
-        public DateTime LastContact { get; set; }
-        public DateTime NextContact { get; set; }
+        public string LastContact { get; set; }
+        public string NextContact { get; set; }
         public int CustomerID { get; set; }
         public string LastComment { get; set; }
     }

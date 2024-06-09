@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +9,7 @@ namespace Management_SYS
     public partial class HistoryWindow : Window
     {
         private ApplicationContext1 dbContext;
+        private bool isCardWindowOpen = false; // Flag to control window state
 
         public HistoryWindow()
         {
@@ -50,14 +50,28 @@ namespace Management_SYS
         // Handle selection change in the contacts list
         private void ListOfCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ListOfContacts.SelectedItem != null)
+            if (ListOfContacts.SelectedItem != null && !isCardWindowOpen)
             {
-                dynamic selectedContact = ListOfContacts.SelectedItem;
-                int customerId = selectedContact.Id_of_customer;
-                Customer selectedCustomer = dbContext.Customers.FirstOrDefault(c => c.customerID == customerId);
-                CardWindow cardWindow = new CardWindow(selectedCustomer, dbContext);
-                cardWindow.Owner = this;
-                cardWindow.ShowDialog();
+                try
+                {
+                    isCardWindowOpen = true;
+                    dynamic selectedContact = ListOfContacts.SelectedItem;
+                    int customerId = selectedContact.Id_of_customer;
+                    Customer selectedCustomer = dbContext.Customers.FirstOrDefault(c => c.customerID == customerId);
+                    CardWindow cardWindow = new CardWindow(selectedCustomer, dbContext);
+                    cardWindow.Owner = this;
+                    cardWindow.Closed += (s, args) =>
+                    {
+                        isCardWindowOpen = false; // Reset the flag after closing the window
+                        ListOfContacts.SelectedItem = null; // Reset the selection
+                    };
+                    cardWindow.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error opening CardWindow: " + ex.Message);
+                    isCardWindowOpen = false; // Ensure the flag is reset in case of an exception
+                }
             }
         }
 
