@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 
 namespace Management_SYS
 {
@@ -25,25 +14,25 @@ namespace Management_SYS
 
             bd = new ApplicationContext1();
         }
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             CabinetWindow cabinetWindow = new CabinetWindow();
             cabinetWindow.Show();
             this.Close();
-
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)
         {
-            // Отримання даних від користувача
+            // Getting data from the user
             string clientName = ClientNameTextBox.Text;
             string clientPhoneNumber = PhoneNumberTextBox.Text;
 
-            // Перевірка на коректність введених даних
+            // Validating the entered data
             bool isValidName = ValidateInput(clientName, ClientNameTextBox, "Name is too short");
             bool isValidPhoneNumber = ValidateInput(clientPhoneNumber, PhoneNumberTextBox, "Phone number is too short");
 
-            // Якщо дані введені коректно, то додаємо клієнта
+            // If the data is valid, add the client
             if (isValidName && isValidPhoneNumber)
             {
                 AddCustomer(clientName, clientPhoneNumber);
@@ -53,7 +42,7 @@ namespace Management_SYS
 
         private bool ValidateInput(string input, TextBox textBox, string errorMessage)
         {
-            // Перевірка на довжину введеного тексту
+            // Checking the length of the entered text
             if (input.Length <= 1)
             {
                 textBox.ToolTip = errorMessage;
@@ -70,7 +59,7 @@ namespace Management_SYS
 
         private void AddCustomer(string name, string phoneNumber)
         {
-            // Додавання нового клієнта до бази даних
+            // Adding a new client to the database
             DateTime currentDateTime = DateTime.Now;
             string currentDateTimeString = currentDateTime.ToString();
 
@@ -81,7 +70,7 @@ namespace Management_SYS
 
         private void ClearInputFields()
         {
-            // Очищення полів вводу після успішного додавання клієнта
+            // Clearing input fields after successfully adding a client
             PhoneNumberTextBox.Text = "";
             ClientNameTextBox.Text = "";
         }

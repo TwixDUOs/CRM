@@ -41,7 +41,7 @@ namespace Management_SYS
                         NameOfCustomer = c.NameOfCustomer,
                         PhoneNumberOfCustomer = c.PhoneNumberOfCustomer,
                         LastContact = c.LastContact,
-                        NextContact = c.NextContact, // Format date with dots
+                        NextContact = c.NextContact,
                         CustomerID = c.customerID,
                         LastComment = dbContext.Contacts_story
                             .Where(contact => contact.Id_of_customer == c.customerID)
