@@ -17,14 +17,22 @@ namespace Management_SYS
         // Update navigation text based on the number of planned calls
         private void UpdateNavigationText()
         {
-            int plannedCallsToday = GetPlannedCallsCountForToday(); // Get the count of planned calls for today
-            if (plannedCallsToday > 0)
+            // Перевірка на помилки підключення, щоб вікно не падало при старті
+            try
             {
-                NavigationTextBlock.Text = $"Planned calls today: {plannedCallsToday}"; // Update text if there are planned calls
+                int plannedCallsToday = GetPlannedCallsCountForToday();
+                if (plannedCallsToday > 0)
+                {
+                    NavigationTextBlock.Text = $"Planned calls today: {plannedCallsToday}";
+                }
+                else
+                {
+                    NavigationTextBlock.Text = "Select an action from the left menu to get started.";
+                }
             }
-            else
+            catch
             {
-                NavigationTextBlock.Text = "Select an action from the left menu to get started."; // Default text if no planned calls
+                NavigationTextBlock.Text = "Database connection error or no data.";
             }
         }
 
@@ -38,39 +46,51 @@ namespace Management_SYS
                 .ToList();
             int count = plannedCalls.Count();
 
-            return count; // Return the count of planned calls for today
+            return count;
         }
 
         // Handle click event for history link
         private void HistoryLink_Click(object sender, RoutedEventArgs e)
         {
             HistoryWindow historyWindow = new HistoryWindow();
-            historyWindow.Show(); // Open HistoryWindow
-            this.Close(); // Close the current window
+            historyWindow.Show();
+            this.Close();
         }
 
         // Handle click event for planned calls link
         private void PlannedCallsLink_Click(object sender, RoutedEventArgs e)
         {
             PlannedCallsWindow plannedCallsWindow = new PlannedCallsWindow();
-            plannedCallsWindow.Show(); // Open PlannedCallsWindow
-            this.Close(); // Close the current window
+            plannedCallsWindow.Show();
+            this.Close();
         }
 
         // Handle click event for adding a new client
         private void AddNew_Click(object sender, RoutedEventArgs e)
         {
             AddClient_Window addClientWindow = new AddClient_Window();
-            addClientWindow.Show(); // Open AddClient_Window
-            this.Close(); // Close the current window
+            addClientWindow.Show();
+            this.Close();
+        }
+
+        // --- НОВИЙ МЕТОД ДЛЯ ВІДКРИТТЯ АНАЛІТИКИ ---
+        private void Analytics_Click(object sender, RoutedEventArgs e)
+        {
+            // Створюємо екземпляр вікна аналітики (з попереднього кроку)
+            AnalyticsWindow analyticsWindow = new AnalyticsWindow();
+            analyticsWindow.Show();
+
+            // Якщо хочеш, щоб головне меню закривалось - залиш цей рядок. 
+            // Якщо ні - закоментуй this.Close();
+            // this.Close(); 
         }
 
         // Handle click event for the exit button
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             RegistrationWindow registrationWindow = new RegistrationWindow();
-            registrationWindow.Show(); // Open RegistrationWindow
-            this.Close(); // Close the current window
+            registrationWindow.Show();
+            this.Close();
         }
     }
 }

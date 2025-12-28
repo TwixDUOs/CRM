@@ -41,7 +41,6 @@ C:\Users\Twix\Desktop\Management_SYS\Management_SYS\bin\x64\Debug\ru\Xceed.Wpf.A
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\bin\x64\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\bin\x64\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.csproj.AssemblyReference.cache
-C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.csproj.SuggestedBindingRedirects.cache
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\AddClient_Window.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\AuthentificationWindow.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\CabinetWindow.g.cs
@@ -62,8 +61,11 @@ C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.Properties.Resources.resources
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.csproj.GenerateResource.cache
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.csproj.CoreCompileInputs.cache
-C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.csproj.CopyComplete
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.exe
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Management_SYS.pdb
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\RegistrationWindow.g.cs
 C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\RegistrationWindow.baml
+C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\Manageme.65614FE6.Up2Date
+C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\AnalyticsWindow.baml
+C:\Users\Twix\Desktop\Management_SYS\Management_SYS\obj\x64\Debug\AnalyticsWindow.g.cs

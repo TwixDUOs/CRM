@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Management_SYS"
         mc:Ignorable="d"
-        Title="CardWindow" Height="500" Width="800">
+        Title="CardWindow" Height="500" Width="1100" MinWidth="1100" MinHeight="250">
+    <Window.Resources>
+        <local:WidthConverter x:Key="WidthConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -13,17 +17,48 @@
         </Grid.RowDefinitions>
 
 
-        <ListView x:Name="ContactHistoryListView" Margin="10" VerticalAlignment="Top" Grid.Row="0">
+        <ListView x:Name="ContactHistoryListView" 
+          VerticalAlignment="Top" 
+          Margin="5, 5, 75, 5"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          ScrollViewer.CanContentScroll="False">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="NameOfCustomer" DisplayMemberBinding="{Binding NameOfCustomer}" Width="Auto" />
-                    <GridViewColumn Header="PhoneNumberOfCustomer" DisplayMemberBinding="{Binding PhoneNumberOfCustomer}" Width="Auto" />
-                    <GridViewColumn Header="Contact_info" DisplayMemberBinding="{Binding Contact_info}" Width="Auto" />
-                    <GridViewColumn Header="Time_of_contact" DisplayMemberBinding="{Binding Time_of_contact}" Width="Auto" />
+                    <GridViewColumn Header="NameOfCustomer" 
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource WidthConverter}, ConverterParameter='NameOfCustomer'}" 
+                    DisplayMemberBinding="{Binding NameOfCustomer}" />
+
+                    <GridViewColumn Header="PhoneNumberOfCustomer" 
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource WidthConverter}, ConverterParameter='PhoneNumberOfCustomer'}" 
+                    DisplayMemberBinding="{Binding PhoneNumberOfCustomer}" />
+
+                    <GridViewColumn Header="Contact_info" 
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource WidthConverter}, ConverterParameter='Contact_info'}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Contact_info}" TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Time_of_contact" 
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource WidthConverter}, ConverterParameter='Time_of_contact'}" 
+                    DisplayMemberBinding="{Binding Time_of_contact}" />
+
+                    <GridViewColumn Header="Action" 
+                Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}, Converter={StaticResource WidthConverter}, ConverterParameter='Action'}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="DeleteButton_Click"
+                                Command="{Binding DataContext.ApplyCommand, RelativeSource={RelativeSource AncestorType=ListView}}" 
+                                CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-
 
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>

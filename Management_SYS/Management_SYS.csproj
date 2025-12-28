@@ -127,6 +127,9 @@
     <Compile Include="AddClient_Window.xaml.cs">
       <DependentUpon>AddClient_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AnalyticsWindow.xaml.cs">
+      <DependentUpon>AnalyticsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="ApplicationContext1.cs" />
     <Compile Include="AuthentificationWindow.xaml.cs">
@@ -143,11 +146,16 @@
     <Compile Include="HistoryWindow.xaml.cs">
       <DependentUpon>HistoryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MathAnalysis.cs" />
     <Compile Include="PlannedCallsWindow.xaml.cs">
       <DependentUpon>PlannedCallsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Page Include="AddClient_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AnalyticsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
