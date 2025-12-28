@@ -2,7 +2,7 @@
 
 namespace Management_SYS
 {
-    public class Contact_story
+    public class Contacts_story
     {
         [Key]
         public int id_of_contact { get; set; }
